@@ -4,6 +4,7 @@ import { useAi } from "@/app/store/AiContext";
 import { useFormFields } from "@/app/store/FormFieldContext";
 import { isValidUrl } from "./Global";
 import { generateLLMs } from "@/services/generateLlms";
+import { useTransition } from "react";
 
 function getErrorMessage(error: unknown) {
     return error instanceof Error ? error.message : "Failed to generate LLMs";
@@ -12,7 +13,8 @@ function getErrorMessage(error: unknown) {
 export default function AiUrlFormField() {
     const { dispatch: formDispatch } = useFormFields()!;
     const { state: aiState, dispatch: aiDispatch } = useAi()!;
-    const { url, urlError, urlWarning, isGenerating } = aiState;
+    const { url, urlError, urlWarning } = aiState;
+    const [isPending, startTransition] = useTransition();
 
     const handleUrlChange = (value: string) => {
         aiDispatch({ type: "SET_URL", payload: value });
@@ -27,13 +29,14 @@ export default function AiUrlFormField() {
         }
 
         try {
-            const res = await generateLLMs(url);
-
-            if (res.success) {
-                aiDispatch({ type: "SET_OUTPUT_TEXT", payload: res.markdown });
-            } else {
-                aiDispatch({ type: "SET_URL_VALIDATION", payload: { error: res.error || "Failed to generate LLMs", warning: "" } });
-            }
+            startTransition(async () => {
+                const res = await generateLLMs(url);
+                if (res.success) {
+                    aiDispatch({ type: "SET_OUTPUT_TEXT", payload: res.markdown });
+                } else {
+                    aiDispatch({ type: "SET_URL_VALIDATION", payload: { error: res.error || "Failed to generate LLMs", warning: "" } });
+                }
+            });
         } catch (error: unknown) {
             aiDispatch({ type: "SET_URL_VALIDATION", payload: { error: getErrorMessage(error), warning: "" } });
         }
@@ -97,15 +100,15 @@ export default function AiUrlFormField() {
                 {/* Generate button */}
                 <button
                     onClick={handleGenerate}
-                    disabled={!url.trim() || !!urlError || isGenerating}
-                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 ${!url.trim() || !!urlError || isGenerating
+                    disabled={!url.trim() || !!urlError || isPending}
+                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 ${!url.trim() || !!urlError || isPending
                         ? "bg-surface2 text-muted-custom border border-border-custom2 cursor-not-allowed"
                         : urlWarning
                             ? "bg-amber-500 text-white hover:bg-amber-600 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(234,179,8,0.35)]"
                             : "bg-accent-custom text-white hover:bg-[#6b5ce7] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(124,108,252,0.35)]"
                         }`}
                 >
-                    {isGenerating ? (
+                    {isPending ? (
                         <>
                             <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                             Analyzing site…
