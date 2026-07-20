@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  /* Register Tailwind CSS v4 variables natively */
+  --color-bg: #0a0a0f;
+  --color-surface: #111118;
+  --color-surface2: #18181f;
+  --color-border-custom: rgba(255, 255, 255, 0.07);
+  --color-border-custom2: rgba(255, 255, 255, 0.13);
+  --color-text-custom: #f0f0f5;
+  --color-muted-custom: #6b6b82;
+  --color-accent-custom: #7c6cfc;
+  --color-accent2-custom: #a78bfa;
+  --color-accent-dim: rgba(124, 108, 252, 0.12);
+  --color-accent-dim2: rgba(124, 108, 252, 0.22);
+  --color-green-custom: #34d399;
+  --color-green-dim: rgba(52, 211, 153, 0.1);
+  --color-red-custom: #f87171;
+  --color-red-dim: rgba(248, 113, 113, 0.1);
+  --font-mono: var(--font-dm-mono), 'DM Mono', monospace;
+  --font-sans: var(--font-syne), 'Syne', sans-serif;
+}
+
+/* Override registered variables directly inside the light theme selector */
+.light, :root.light {
+  --color-bg: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-surface2: #f1f3f5;
+  --color-border-custom: rgba(0, 0, 0, 0.12);
+  --color-border-custom2: rgba(0, 0, 0, 0.20);
+  --color-text-custom: #1c1e21;
+  --color-muted-custom: #5c6370;
+  --color-accent-custom: #6b5ce7;
+  --color-accent2-custom: #7c6cfc;
+  --color-accent-dim: rgba(107, 92, 231, 0.07);
+  --color-accent-dim2: rgba(107, 92, 231, 0.14);
+  --color-green-custom: #0c8f5f;
+  --color-green-dim: rgba(12, 143, 95, 0.07);
+  --color-red-custom: #cf2a2a;
+  --color-red-dim: rgba(207, 42, 42, 0.07);
+}
+
+/* Smooth scrolling transition */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base body style with grid background */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text-custom);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(124, 108, 252, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 108, 252, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  transition: background-image 0.3s ease;
+}
+
+:root.light body::before, .light body::before {
+  background-image:
+    linear-gradient(rgba(107, 92, 231, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107, 92, 231, 0.02) 1px, transparent 1px);
+}
+
+/* Custom Scrollbars */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: var(--color-border-custom2);
+  border-radius: 3px;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent2-custom);
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.animate-pulse-custom {
+  animation: pulse 2s infinite;
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.animate-pop-in {
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Custom fade-in for steps panels */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
