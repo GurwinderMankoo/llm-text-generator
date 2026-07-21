@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface LogoProps {
   className?: string;
@@ -10,7 +9,7 @@ export default function Logo({ className = "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md
       viewBox="0 0 200 200"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      className={`${className} select-none pointer-events-none transition-all duration-300 hover:scale-105 drop-shadow-[0_4px_12px_rgba(124,108,252,0.15)]`}
+      className={`${className} select-none pointer-events-none transition-all duration-300 hover:scale-105`}
     >
       <title>llmoptimize compact logo</title>
       <desc>Compact square logo: a rounded badge with a simple document icon and an upward arrow, representing AI search optimization</desc>
