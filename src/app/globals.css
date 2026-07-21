@@ -143,3 +143,80 @@ body::before {
 .siteInfoInput {
   display: none !important;
 }
+
+/* Logo theme colors */
+.logo-bg {
+  fill: #161233;
+  stroke: none;
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+.logo-doc {
+  fill: #f2f2fb;
+  transition: fill 0.3s ease;
+}
+
+.logo-doc-fold {
+  fill: #d3d3e8;
+  transition: fill 0.3s ease;
+}
+
+.logo-line-1 {
+  fill: #c7c7e0;
+  transition: fill 0.3s ease;
+}
+
+.logo-line-2 {
+  fill: #2dd4bf;
+  transition: fill 0.3s ease;
+}
+
+.logo-arrow {
+  stroke: #2dd4bf;
+  transition: stroke 0.3s ease;
+}
+
+.logo-arrow-head {
+  stroke: #2dd4bf;
+  fill: #2dd4bf;
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* Light mode overrides */
+.light .logo-bg,
+:root.light .logo-bg {
+  fill: #ffffff;
+  stroke: rgba(124, 108, 252, 0.15);
+  stroke-width: 2px;
+}
+
+.light .logo-doc,
+:root.light .logo-doc {
+  fill: #161233;
+}
+
+.light .logo-doc-fold,
+:root.light .logo-doc-fold {
+  fill: #4b4b7a;
+}
+
+.light .logo-line-1,
+:root.light .logo-line-1 {
+  fill: #8a8aab;
+}
+
+.light .logo-line-2,
+:root.light .logo-line-2 {
+  fill: #7c6cfc;
+}
+
+.light .logo-arrow,
+:root.light .logo-arrow {
+  stroke: #7c6cfc;
+}
+
+.light .logo-arrow-head,
+:root.light .logo-arrow-head {
+  stroke: #7c6cfc;
+  fill: #7c6cfc;
+}
