@@ -1,0 +1,19 @@
+# llms.txt Generator
+
+> A no-code tool that helps website owners generate an llms.txt file — a standardized markdown file that helps AI search engines and LLM web crawlers discover, understand, and crawl a site's content.
+
+## Overview
+
+- Guides users through a simple three-step flow: Site info, Content links, and Export.
+- Supports both a manual entry mode and an AI-assisted mode for generating the file.
+- Captures project/site name, a one-line description, additional context notes, and site category (SaaS, e-commerce, blog, docs, agency, portfolio, community, non-profit, other).
+- Outputs a ready-to-use llms.txt file formatted to the emerging llms.txt standard.
+
+## Docs
+
+- [Home](https://llmoptimize.vercel.app/): Start the llms.txt generation flow.
+
+## Notes
+
+- Part of the broader "AI Search SEO" category of tools aimed at improving how LLMs discover and interpret website content.
+- No account or code required to generate a file.

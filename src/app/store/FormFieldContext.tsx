@@ -8,6 +8,7 @@ interface LinkItem {
   id: string;
   url: string;
   label: string;
+  description: string;
 }
 
 export interface SectionItem {
@@ -23,6 +24,7 @@ export type FormFieldStateType = {
   mode: Mode;
   step: number;
   siteName: string;
+  siteInfoInput: string;
   siteDesc: string;
   siteNotes: string;
   siteCategory: string;
@@ -33,7 +35,7 @@ export type FormFieldStateType = {
 }
 
 export const sections = [
-  
+
 ]
 
 export const formFieldState = {
@@ -43,17 +45,18 @@ export const formFieldState = {
   siteDesc: "",
   siteNotes: "",
   siteCategory: "",
+  siteInfoInput: "",
   siteNameError: false,
   sections: [
     {
       id: "sec-0",
       heading: "Docs",
-      links: [{ id: "link-0-0", url: "", label: "" }],
+      links: [{ id: "link-0-0", url: "", label: "", description: "" }],
     },
     {
       id: "sec-1",
       heading: "Key pages",
-      links: [{ id: "link-1-0", url: "", label: "" }],
+      links: [{ id: "link-1-0", url: "", label: "", description: "" }],
     },
   ],
   optionalLinks: [],
@@ -72,9 +75,9 @@ export const useFormFields = () => useContext(FormFieldContext);
 
 export default function FormFieldContextProvider({ children }: { children: React.ReactNode }) {
 
-    const [state, dispatch] = useReducer(formFieldReducer, formFieldState);
+  const [state, dispatch] = useReducer(formFieldReducer, formFieldState);
 
-    const siteNameInputRef = useRef<HTMLInputElement>(null);
+  const siteNameInputRef = useRef<HTMLInputElement>(null);
 
 
   return (

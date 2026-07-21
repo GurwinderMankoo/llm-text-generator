@@ -22,7 +22,8 @@
 }
 
 /* Override registered variables directly inside the light theme selector */
-.light, :root.light {
+.light,
+:root.light {
   --color-bg: #f8f9fa;
   --color-surface: #ffffff;
   --color-surface2: #f1f3f5;
@@ -66,7 +67,8 @@ body::before {
   transition: background-image 0.3s ease;
 }
 
-:root.light body::before, .light body::before {
+:root.light body::before,
+.light body::before {
   background-image:
     linear-gradient(rgba(107, 92, 231, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(107, 92, 231, 0.02) 1px, transparent 1px);
@@ -76,21 +78,33 @@ body::before {
 .scrollbar-custom::-webkit-scrollbar {
   width: 6px;
 }
+
 .scrollbar-custom::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .scrollbar-custom::-webkit-scrollbar-thumb {
   background: var(--color-border-custom2);
   border-radius: 3px;
 }
+
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent2-custom);
 }
 
 /* Animations */
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
 }
 
 .animate-pulse-custom {
@@ -98,8 +112,15 @@ body::before {
 }
 
 @keyframes popIn {
-  from { transform: scale(0); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .animate-pop-in {
@@ -108,6 +129,17 @@ body::before {
 
 /* Custom fade-in for steps panels */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.siteInfoInput {
+  display: none !important;
 }

@@ -76,7 +76,7 @@ export async function llmGenerator(url: string): Promise<llmGeneratorResponse> {
         return { success: true, markdown: response.text ?? '' };
 
     } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : "An unknown error occurred";
+        const message = 'Something went wrong. Please try later'
         return { success: false, error: message };
     }
 
